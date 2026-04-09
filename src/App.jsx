@@ -13,9 +13,17 @@ const profiles = [
 
 function App() {
   const [index, setIndex] = useState(0);
+
+  // イベントハンドラの定義
+  const handleClick = () => {
+    // インデックスが4のときは0に戻す
+    setIndex((prev) => (prev === profiles.length - 1 ? 0 : prev + 1));
+  };
+
   return (
     <>
       <ProfileCard {...profiles[index]} />
+      <button onClick={handleClick}>次のプロフィール</button>
     </>
   )
 }
