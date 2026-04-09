@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import { ProfileCard } from './ProfileCard'
 
 // 社員のプロフィール情報
 const profiles = [
@@ -14,6 +15,7 @@ function App() {
   const [index, setIndex] = useState(0);
   return (
     <>
+      <ProfileCard {...profiles[index]} />
     </>
   )
 }
