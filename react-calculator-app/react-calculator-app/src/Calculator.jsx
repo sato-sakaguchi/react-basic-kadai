@@ -5,7 +5,7 @@ export function Calculator() {
     // displayという名前の状態変数を定義（初期値は空文字）
     const [display, setDisplay] = useState("");
 
-    // ボタンの配置を表す配列（記述順に表示）
+    // 教材コピペ：ボタンの配置を表す配列（記述順に表示）
     const buttons = [
     '7', '8', '9', '/',
     '4', '5', '6', '*',
@@ -15,7 +15,14 @@ export function Calculator() {
 
     // 定義のみ
     const handleClick = (btn) => {
+        if (btn === "C") {
+            // クリアボタン：表示欄を’’にクリア
+            setDisplay("");
+        } else if (btn === "=") {
 
+        } else {
+            setDisplay(display + btn);
+        }
     };
 
     return (
