@@ -17,11 +17,11 @@ export function Calculator() {
     const calculate = (expression) => {
         // 「整数 演算子 整数」の形式のみ許可
         const validExpression = /^(\d+)([+\-*/])(\d+)$/;
+        // 有効な式であるかチェック
         const match = expression.match(validExpression);
-
         if (!match){
             // 形式に合わない場合はエラー
-            throw new Error("無効な式")
+            throw new Error("無効な式です")
         }
 
         // データの取得
