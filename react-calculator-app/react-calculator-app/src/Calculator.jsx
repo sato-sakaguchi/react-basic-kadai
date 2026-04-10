@@ -13,15 +13,60 @@ export function Calculator() {
     '0', 'C', '=', '+'
     ];
 
-    // 定義のみ
+    // 正規表現を用いて「整数 演算子 整数」の形式をチェックする
+    const calculate = (expression) => {
+        // 「整数 演算子 整数」の形式のみ許可
+        const validExpression = /^(\d+)([+\-*/])(\d+)$/;
+        const match = expression.match(validExpression);
+
+        if (!match){
+            // 形式に合わない場合はエラー
+            throw new Error("無効な式")
+        }
+
+        // データの取得
+        const num1 = Number(match[1]);   // 1つ目の整数
+        const operator = match[2];       // 演算子
+        const num2 = Number(match[3]);   // 2つ目の整数
+
+        // 演算子の内容に沿って計算を行い、結果を返却
+        switch (operator) {
+            case '+':
+                return num1 + num2;
+            case '-':
+                return num1 - num2;
+            case '*':
+                return num1 * num2;
+            case '/':
+                // 0除算の考慮（エラーハンドリング）
+                return num2 !== 0 ? num1 / num2 : "エラー";
+            default:
+                return "エラー";
+        }
+    };
+
+    // displayを更新するイベントハンドラ
     const handleClick = (btn) => {
         if (btn === "C") {
             // クリアボタン：表示欄を’’にクリア
             setDisplay("");
         } else if (btn === "=") {
-
+            // イコールボタン：計算を実行
+            try{
+                const result = calculate(display);
+                setDisplay(String(result));
+            } catch (error) {
+                // 計算失敗時は「エラー」を設定
+                setDisplay("エラー");
+            }
         } else {
-            setDisplay(display + btn);
+            if (display === "エラー") {
+                // 「エラー」表示中に何か押されたら、一旦リセットして新しい入力を開始
+                setDisplay(btn);
+            } else{
+                // 数字や演算子：そのボタン名（+、1など）をdisplayの末尾に追加する。
+                setDisplay(display + btn);
+            } 
         }
     };
 
