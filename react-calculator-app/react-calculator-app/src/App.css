@@ -1,0 +1,41 @@
+/* 電卓全体のコンテナ */
+.calculator-container {
+  background-color: whitesmoke;
+  border: 1px solid gray;
+  padding: 20px;
+  width: fit-content;
+  border-radius: 8px;
+  margin: 20px auto;
+}
+
+/* 表示欄のスタイル */
+.display {
+  background-color: white;
+  border: 1px solid #ccc;
+  height: 40px;
+  line-height: 40px;
+  text-align: right;
+  padding: 0 10px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+/* ボタンのグリッドレイアウト設定 */
+.button-grid {
+  display: grid; /* グリッドレイアウト */
+  grid-template-columns: repeat(4, 60px); /* 列の定義: 4列、各列の幅60px */
+  gap: 8px; /* グリッド間の隙間 */
+}
+
+/* ボタン共通のスタイル */
+button {
+  background-color: lightblue;
+  border: 1px solid #999;
+  height: 60px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #add8e6; 
+}
